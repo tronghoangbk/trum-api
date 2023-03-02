@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const projectSchema = new Schema(
   {
@@ -6,8 +6,9 @@ const projectSchema = new Schema(
     category: String,
     description: String,
     mainImage: String,
-    content: Object,
-    image: Object,
+    mainImageAlt: String,
+    video: String,
+    videoAlt: String,
     credits: Object,
     listContent: [
       {
@@ -23,4 +24,4 @@ const projectSchema = new Schema(
   }
 );
 
-export default projectSchema;
+export default mongoose.model("Project", projectSchema);
