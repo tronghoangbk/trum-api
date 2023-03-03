@@ -9,6 +9,12 @@ const contactSchema = new Schema({
     name: String,
     email: String,
     message: String,
+    phone: String,
+    address: String,
+    facebook: String,
+    instagram: String,
+    twitter: String,
+    linkedin: String,
 }, {
     timestamps: true,
 });
