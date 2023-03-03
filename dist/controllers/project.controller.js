@@ -16,7 +16,7 @@ exports.addProjectController = exports.deleteProjectController = exports.getProj
 const project_model_1 = __importDefault(require("../models/project.model"));
 const getProjectController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const project = yield project_model_1.default.find({}, { title: 1, image: 1, category: 1 });
+        const project = yield project_model_1.default.find({}, { title: 1, mainImage: 1, category: 1 });
         res.status(200).json(project);
     }
     catch (error) {

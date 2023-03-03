@@ -4,5 +4,6 @@ import {getProjectController, getProjectByTitleController} from '../controllers/
 const ProjectRouter = Router();
 ProjectRouter.get('/', getProjectController);
 ProjectRouter.get('/get-by-title/:title', getProjectByTitleController);
+ProjectRouter.put('/update/:id', getProjectController);
 
 export default ProjectRouter;

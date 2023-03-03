@@ -5,7 +5,7 @@ const getProjectController = async (req: Request, res: Response) => {
   try {
     const project = await ProjectModel.find(
       {},
-      { title: 1, image: 1, category: 1 }
+      { title: 1, mainImage: 1, category: 1 }
     );
     res.status(200).json(project);
   } catch (error: any) {
