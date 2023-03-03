@@ -41,6 +41,13 @@ const projectSchema = new mongoose_1.Schema({
             imageAlt: String,
         },
     ],
+    swiper: [
+        {
+            title: String,
+            description: String,
+            image: String,
+        },
+    ],
 }, {
     timestamps: true,
 });

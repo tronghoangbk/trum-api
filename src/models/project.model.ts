@@ -18,6 +18,13 @@ const projectSchema = new Schema(
         imageAlt: String,
       },
     ],
+    swiper: [
+      {
+        title: String,
+        description: String,
+        image: String,
+      },
+    ],
   },
   {
     timestamps: true,
