@@ -3,37 +3,27 @@ const Schema = mongoose.Schema;
 
 const homeSchema = new Schema(
   {
-    title: { type: Array, default: [] },
-    // title: [
-    //   {
-    //     content: { type: String },
-    //     effect: { type: Array, default: [] },
-    //   },
-    // ],
-    //   description: [{ content: String }],
-    //   mainImage: String,
-    //   swiper: [
-    //     {
-    //       content: String,
-    //       description: String,
-    //       image: String,
-    //       imageAlt: String,
-    //     },
-    //   ],
-    //   subTitle: [
-    //     {
-    //       content: String,
-    //       effect: { type: Array, default: [] },
-    //     },
-    //   ],
-    //   listContent: [
-    //     {
-    //       content: String,
-    //       description: String,
-    //       image: String,
-    //       imageAlt: String,
-    //     },
-    //   ],
+    title: [
+      {
+        content: { type: String },
+        effect: { type: Array, default: [] },
+      },
+    ],
+    description: [{ content: String }],
+    mainImage: String,
+    subTitle: [
+      {
+        content: { type: String },
+        effect: { type: Array, default: [] },
+      },
+    ],
+    listContent: [
+      {
+        content: { type: String },
+        description: { type: String },
+        image: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );

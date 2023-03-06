@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addProjectController = exports.deleteProjectController = exports.getProjectByTitleController = exports.getProjectController = void 0;
+exports.updateProjectController = exports.addProjectController = exports.deleteProjectController = exports.getProjectByTitleController = exports.getProjectController = void 0;
 const project_model_1 = __importDefault(require("../models/project.model"));
 const getProjectController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -54,3 +54,13 @@ const deleteProjectController = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.deleteProjectController = deleteProjectController;
+const updateProjectController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const project = yield project_model_1.default.findOneAndUpdate({ _id: req.params.id }, req.body);
+        res.status(200).json(project);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+});
+exports.updateProjectController = updateProjectController;

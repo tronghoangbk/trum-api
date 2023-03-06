@@ -13,15 +13,34 @@ const getRecruitmentController = async (req: Request, res: Response) => {
 
 const updateRecruitmentController = async (req: Request, res: Response) => {
   try {
-    const recruitment = await RecruitmentModel.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
+    const { title, description } = req.body;
+    const newData = await RecruitmentModel.findOneAndUpdate(
+      {},
+      { title, description },
       { new: true }
     );
-    res.status(200).json(recruitment);
+    res.status(200).json(newData);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
 };
 
-export { getRecruitmentController, updateRecruitmentController };
+const addHiringController = async (req: Request, res: Response) => {
+  try {
+    const { title, description } = req.body;
+    const newData = await RecruitmentModel.findOneAndUpdate(
+      {},
+      {$push: {listJob: {title, description}}},
+      { new: true }
+    );
+    res.status(200).json(newData);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export {
+  getRecruitmentController,
+  updateRecruitmentController,
+  addHiringController,
+};

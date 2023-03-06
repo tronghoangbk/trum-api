@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getContactController = void 0;
+exports.updateContactController = exports.getContactController = void 0;
 const contact_model_1 = __importDefault(require("../models/contact.model"));
 const getContactController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -26,10 +26,13 @@ const getContactController = (req, res) => __awaiter(void 0, void 0, void 0, fun
 exports.getContactController = getContactController;
 const updateContactController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const contact = yield contact_model_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+        const contact = yield contact_model_1.default.findOneAndUpdate({}, req.body, {
+            new: true,
+        });
         res.status(200).json(contact);
     }
     catch (error) {
         res.status(404).json({ message: error.message });
     }
 });
+exports.updateContactController = updateContactController;

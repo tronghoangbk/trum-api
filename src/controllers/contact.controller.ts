@@ -12,15 +12,13 @@ const getContactController = async (req: Request, res: Response) => {
 
 const updateContactController = async (req: Request, res: Response) => {
   try {
-    const contact = await contactModel.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
-    );
+    const contact = await contactModel.findOneAndUpdate({}, req.body, {
+      new: true,
+    });
     res.status(200).json(contact);
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
 };
 
-export { getContactController };
+export { getContactController, updateContactController };

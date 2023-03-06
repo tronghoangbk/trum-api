@@ -10,4 +10,17 @@ const getHomeContent = async (req: Request, res: Response) => {
   }
 };
 
-export { getHomeContent };
+const updateHomePageController = async (req: Request, res: Response) => {
+  try {
+    const data = await HomeModel.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true }
+    );
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export { getHomeContent, updateHomePageController };

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateRecruitmentController = exports.getRecruitmentController = void 0;
+exports.addHiringController = exports.updateRecruitmentController = exports.getRecruitmentController = void 0;
 const recruitment_model_1 = __importDefault(require("../models/recruitment.model"));
 const getRecruitmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -26,11 +26,23 @@ const getRecruitmentController = (req, res) => __awaiter(void 0, void 0, void 0,
 exports.getRecruitmentController = getRecruitmentController;
 const updateRecruitmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const recruitment = yield recruitment_model_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
-        res.status(200).json(recruitment);
+        const { title, description } = req.body;
+        const newData = yield recruitment_model_1.default.findOneAndUpdate({}, { title, description }, { new: true });
+        res.status(200).json(newData);
     }
     catch (error) {
         res.status(404).json({ message: error.message });
     }
 });
 exports.updateRecruitmentController = updateRecruitmentController;
+const addHiringController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { title, description } = req.body;
+        const newData = yield recruitment_model_1.default.findOneAndUpdate({}, { $push: { listJob: { title, description } } }, { new: true });
+        res.status(200).json(newData);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+});
+exports.addHiringController = addHiringController;

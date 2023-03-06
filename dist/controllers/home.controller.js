@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHomeContent = void 0;
+exports.updateHomePageController = exports.getHomeContent = void 0;
 const home_model_1 = __importDefault(require("../models/home.model"));
 const getHomeContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,3 +24,13 @@ const getHomeContent = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getHomeContent = getHomeContent;
+const updateHomePageController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield home_model_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+        res.status(200).json(data);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+});
+exports.updateHomePageController = updateHomePageController;
