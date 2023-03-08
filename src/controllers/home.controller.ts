@@ -12,11 +12,7 @@ const getHomeContent = async (req: Request, res: Response) => {
 
 const updateHomePageController = async (req: Request, res: Response) => {
   try {
-    const data = await HomeModel.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
-    );
+    const data = await HomeModel.findOneAndUpdate({}, req.body, { new: true });
     res.status(200).json(data);
   } catch (error: any) {
     res.status(404).json({ message: error.message });

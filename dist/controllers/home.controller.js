@@ -26,7 +26,7 @@ const getHomeContent = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getHomeContent = getHomeContent;
 const updateHomePageController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = yield home_model_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+        const data = yield home_model_1.default.findOneAndUpdate({}, req.body, { new: true });
         res.status(200).json(data);
     }
     catch (error) {
