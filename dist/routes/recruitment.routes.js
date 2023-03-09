@@ -6,4 +6,6 @@ const RecruitmentRouter = (0, express_1.Router)();
 RecruitmentRouter.get("/", recruitment_controller_1.getRecruitmentController);
 RecruitmentRouter.put("/update", recruitment_controller_1.updateRecruitmentController);
 RecruitmentRouter.post("/add-hiring", recruitment_controller_1.addHiringController);
+RecruitmentRouter.delete("/delete-hiring/:id", recruitment_controller_1.deleteHiringController);
+RecruitmentRouter.put("/update-hiring/:id", recruitment_controller_1.updateHiringController);
 exports.default = RecruitmentRouter;

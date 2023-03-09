@@ -52,6 +52,7 @@ process.env.UV_THREADPOOL_SIZE = os_1.default.cpus().length;
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 const server = http_1.default.createServer(app);
+// const upload = multer({ dest: "uploads/" });
 exports.io = new socket_io_1.Server(server);
 const runningApp = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, db_config_1.connectDB)();
@@ -62,8 +63,13 @@ const runningApp = () => __awaiter(void 0, void 0, void 0, function* () {
         extended: true,
         parameterLimit: 500000,
     }));
+    // app.use(upload.array());
     app.use(express_1.default.json({ limit: "5000mb" }));
     app.use((0, cors_1.default)(cors_config_1.corsOptions));
+    // app.use(bodyParser.json());
+    // app.use(bodyParser.urlencoded({ extended: true }));
+    // app.use(upload.array('title', 12));
+    // app.use(bodyParser());
     app.use((0, morgan_1.default)("dev"));
     app.use("/", api_routes_1.default);
     app.get("/favicon.ico", (req, res) => {

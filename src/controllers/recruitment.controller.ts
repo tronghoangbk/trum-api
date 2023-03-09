@@ -30,7 +30,7 @@ const addHiringController = async (req: Request, res: Response) => {
     const { title, description } = req.body;
     const newData = await RecruitmentModel.findOneAndUpdate(
       {},
-      {$push: {listJob: {title, description}}},
+      { $push: { listJob: { title, description } } },
       { new: true }
     );
     res.status(200).json(newData);
@@ -39,8 +39,43 @@ const addHiringController = async (req: Request, res: Response) => {
   }
 };
 
+const deleteHiringController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const newData = await RecruitmentModel.findOneAndUpdate(
+      { "listJob._id": id },
+      { $pull: { listJob: { _id: id } } },
+      { new: true }
+    );
+    res.status(200).json(newData);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+const updateHiringController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { title, description } = req.body;
+    const newData = await RecruitmentModel.findOneAndUpdate(
+      { "listJob._id": id },
+      {
+        $set: {
+          "listJob.$.title": title,
+          "listJob.$.description": description,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(newData);
+  } catch (error: any) {
+    res.status(404).json({ message: error.message });
+  }
+};
 export {
   getRecruitmentController,
   updateRecruitmentController,
   addHiringController,
+  deleteHiringController,
+  updateHiringController
 };

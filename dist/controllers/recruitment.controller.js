@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addHiringController = exports.updateRecruitmentController = exports.getRecruitmentController = void 0;
+exports.updateHiringController = exports.deleteHiringController = exports.addHiringController = exports.updateRecruitmentController = exports.getRecruitmentController = void 0;
 const recruitment_model_1 = __importDefault(require("../models/recruitment.model"));
 const getRecruitmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -46,3 +46,31 @@ const addHiringController = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.addHiringController = addHiringController;
+const deleteHiringController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const newData = yield recruitment_model_1.default.findOneAndUpdate({ "listJob._id": id }, { $pull: { listJob: { _id: id } } }, { new: true });
+        res.status(200).json(newData);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+});
+exports.deleteHiringController = deleteHiringController;
+const updateHiringController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { title, description } = req.body;
+        const newData = yield recruitment_model_1.default.findOneAndUpdate({ "listJob._id": id }, {
+            $set: {
+                "listJob.$.title": title,
+                "listJob.$.description": description,
+            },
+        }, { new: true });
+        res.status(200).json(newData);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+});
+exports.updateHiringController = updateHiringController;
