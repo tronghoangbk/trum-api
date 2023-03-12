@@ -1,0 +1,1 @@
+DATABASE_URL=mongodb+srv://trumapi:trumapi@cluster0.nuoxdey.mongodb.net/trum?retryWrites=true\&w=majority
