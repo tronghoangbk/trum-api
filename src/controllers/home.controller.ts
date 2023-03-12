@@ -12,7 +12,17 @@ const getHomeContent = async (req: Request, res: Response) => {
 
 const updateHomePageController = async (req: Request, res: Response) => {
   try {
-    const data = await HomeModel.findOneAndUpdate({}, req.body, { new: true });
+    function convert(str: string) {
+      let arr = str.split("\n");
+      let result = "";
+      for (let i = 0; i < arr.length; i++) {
+        result += `<p>${arr[i]}</p>`;
+      }
+      return result;
+    }
+    let newData = req.body;
+    newData.listContent[4] = convert(newData.listContent[4]);
+    const data = await HomeModel.findOneAndUpdate({}, newData, { new: true });
     res.status(200).json(data);
   } catch (error: any) {
     res.status(404).json({ message: error.message });

@@ -26,7 +26,17 @@ const getHomeContent = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getHomeContent = getHomeContent;
 const updateHomePageController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = yield home_model_1.default.findOneAndUpdate({}, req.body, { new: true });
+        function convert(str) {
+            let arr = str.split("\n");
+            let result = "";
+            for (let i = 0; i < arr.length; i++) {
+                result += `<p>${arr[i]}</p>`;
+            }
+            return result;
+        }
+        let newData = req.body;
+        newData.listContent[4] = convert(newData.listContent[4]);
+        const data = yield home_model_1.default.findOneAndUpdate({}, newData, { new: true });
         res.status(200).json(data);
     }
     catch (error) {
