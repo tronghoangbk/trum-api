@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
 
 import { connectDB } from "./config/db.config";
 import * as path from "path";

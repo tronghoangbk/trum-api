@@ -36,8 +36,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runningApp = exports.io = void 0;
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const db_config_1 = require("./config/db.config");
 const path = __importStar(require("path"));
 const morgan_1 = __importDefault(require("morgan"));
