@@ -6,7 +6,7 @@ const connectDB = async () => {
     const promise = async () => {
       return new Promise((resolve: any, rejects: any) => {
         mongoose
-          .connect(`mongodb+srv://trumapi:trumapi@cluster0.nuoxdey.mongodb.net/trum?retryWrites=true&w=majority`)
+          .connect(`${DATABASE_URL}`)
           .then((res: any) => {
             resolve(res);
 			console.log("Connected to database");

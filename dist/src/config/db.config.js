@@ -20,7 +20,7 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         const promise = () => __awaiter(void 0, void 0, void 0, function* () {
             return new Promise((resolve, rejects) => {
                 mongoose_1.default
-                    .connect(`mongodb+srv://trumapi:trumapi@cluster0.nuoxdey.mongodb.net/trum?retryWrites=true&w=majority`)
+                    .connect(`${DATABASE_URL}`)
                     .then((res) => {
                     resolve(res);
                     console.log("Connected to database");
