@@ -35,7 +35,7 @@ const updateHomePageController = (req, res) => __awaiter(void 0, void 0, void 0,
             return result;
         }
         let newData = req.body;
-        newData.listContent[4] = convert(newData.listContent[4]);
+        newData.listContent[2].description = convert(newData.listContent[2].description);
         const data = yield home_model_1.default.findOneAndUpdate({}, newData, { new: true });
         res.status(200).json(data);
     }

@@ -21,7 +21,9 @@ const updateHomePageController = async (req: Request, res: Response) => {
       return result;
     }
     let newData = req.body;
-    newData.listContent[4] = convert(newData.listContent[4]);
+    newData.listContent[2].description = convert(
+      newData.listContent[2].description
+    );
     const data = await HomeModel.findOneAndUpdate({}, newData, { new: true });
     res.status(200).json(data);
   } catch (error: any) {
